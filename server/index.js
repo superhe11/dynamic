@@ -6,12 +6,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+let idCounter =
+    ITEMS_DATA.length > 0
+        ? Math.max(...ITEMS_DATA.map((item) => item.id)) + 1
+        : 1;
+
 app.get('/items', (req, res) => {
     res.json(ITEMS_DATA);
 });
 
 app.post('/items', (req, res) => {
-    const newItem = { id: ITEMS_DATA.length + 1, ...req.body };
+    const newItem = { id: idCounter++, ...req.body };
     ITEMS_DATA.push(newItem);
     res.status(201).json(newItem);
 });

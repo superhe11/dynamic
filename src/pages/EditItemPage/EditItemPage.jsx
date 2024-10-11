@@ -8,23 +8,45 @@ export const EditItemPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [item, setItem] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getItemById(id).then((response) => {
-            setItem(response.data);
-        });
+        const fetchItem = async () => {
+            try {
+                const response = await getItemById(id);
+                setItem(response.data);
+            } catch (error) {
+                console.error('Failed to load item:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItem();
     }, [id]);
 
-    const handleSubmit = (data) => {
-        updateItem(id, data).then(() => navigate('/'));
+    const handleSubmit = async (data) => {
+        try {
+            await updateItem(id, data);
+            navigate('/');
+        } catch (error) {
+            console.error('Failed to update item:', error);
+        }
     };
 
     return (
         <div className={styles.formContainer}>
             <div className={styles.formWrapper}>
-                <h1 className={styles.h1}>Edit Item</h1>
-                {item && (
-                    <ItemForm onSubmit={handleSubmit} defaultValues={item} />
+                <h1 className={styles.title}>Edit Item</h1>
+                {loading ? (
+                    <div className={styles.loader}>Loading...</div>
+                ) : (
+                    item && (
+                        <ItemForm
+                            onSubmit={handleSubmit}
+                            defaultValues={item}
+                        />
+                    )
                 )}
                 <button
                     onClick={() => navigate('/')}

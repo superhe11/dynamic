@@ -9,7 +9,16 @@ export const ListItemsPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getItems().then((response) => setItems(response.data));
+        const fetchItems = async () => {
+            try {
+                const response = await getItems();
+                setItems(response.data);
+            } catch (error) {
+                console.error('Failed to load items:', error);
+            }
+        };
+
+        fetchItems();
     }, []);
 
     return (
