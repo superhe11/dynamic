@@ -48,11 +48,13 @@ export const ItemTable = ({ items = [] }) => {
                             <td className={styles.td}>
                                 {item.endpoints && item.endpoints.length > 0 ? (
                                     <ul>
-                                        {item.endpoints.map((endpoint, index) => (
-                                            <li key={index}>
-                                                {`${endpoint.endpoint} - ${endpoint.status}`}
-                                            </li>
-                                        ))}
+                                        {item.endpoints.map(
+                                            (endpoint, index) => (
+                                                <li key={index}>
+                                                    {`${endpoint.endpoint} - ${endpoint.status}`}
+                                                </li>
+                                            )
+                                        )}
                                     </ul>
                                 ) : (
                                     <p>No endpoints available</p>

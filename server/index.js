@@ -1,18 +1,18 @@
 import express from 'express';
 import cors from 'cors';
-import { warehouseItems } from './items.js';
+import { ITEMS_DATA } from './items.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 app.get('/items', (req, res) => {
-    res.json(warehouseItems);
+    res.json(ITEMS_DATA);
 });
 
 app.post('/items', (req, res) => {
-    const newItem = { id: warehouseItems.length + 1, ...req.body };
-    warehouseItems.push(newItem);
+    const newItem = { id: ITEMS_DATA.length + 1, ...req.body };
+    ITEMS_DATA.push(newItem);
     res.status(201).json(newItem);
 });
 
@@ -21,9 +21,9 @@ app.put('/items/:id', (req, res) => {
     const updatedFields = req.body;
     let itemFound = false;
 
-    warehouseItems.forEach((item, index) => {
+    ITEMS_DATA.forEach((item, index) => {
         if (item.id === id) {
-            warehouseItems[index] = { ...item, ...updatedFields };
+            ITEMS_DATA[index] = { ...item, ...updatedFields };
             itemFound = true;
         }
     });
@@ -33,6 +33,17 @@ app.put('/items/:id', (req, res) => {
     }
 
     res.json({ message: 'Item updated', updatedFields });
+});
+
+app.get('/items/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const item = ITEMS_DATA.find((item) => item.id === id);
+
+    if (!item) {
+        return res.status(404).json({ message: 'Item not found' });
+    }
+
+    res.json(item);
 });
 
 const PORT = 5000;

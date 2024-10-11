@@ -1,4 +1,4 @@
-export const warehouseItems = [
+export const ITEMS_DATA = [
     {
         id: 1,
         name: 'Laptop',
