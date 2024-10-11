@@ -1,0 +1,16 @@
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.radioGroup {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
