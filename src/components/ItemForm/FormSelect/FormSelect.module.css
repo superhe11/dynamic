@@ -1,0 +1,14 @@
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputError {
+    border: 1px solid red;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}

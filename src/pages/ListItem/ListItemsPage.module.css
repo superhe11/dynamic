@@ -1,0 +1,15 @@
+.link {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20%;
+    margin-top: 10px;
+}
+
+.link:hover {
+    background-color: #6d73d8;
+}
