@@ -45,6 +45,7 @@ export const EditItemPage = () => {
                         <ItemForm
                             onSubmit={handleSubmit}
                             defaultValues={item}
+                            inputClassName={styles.inputField}
                         />
                     )
                 )}

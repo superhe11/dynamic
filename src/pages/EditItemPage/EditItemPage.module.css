@@ -38,16 +38,14 @@
     background-color: #357ab8;
 }
 
-input,
-select {
+.input-field {
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-input:focus,
-select:focus {
+.input-field:focus {
     outline: none;
     border-color: #4a90e2;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
@@ -60,5 +58,5 @@ select:focus {
 .error-message {
     color: red;
     font-size: 12px;
-    margin-top: 5px;
+    margin-top: 5px;  
 }
